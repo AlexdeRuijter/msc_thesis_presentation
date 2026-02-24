@@ -1,0 +1,52 @@
+%_________________________________________________________
+\documentclass[11pt, a4paper, oneside, reqno]{article}
+
+%_Style File _____________________________________________
+\input{STYLE/mystyle}
+\input{STYLE/mynotations}
+
+%_______________________________________________________
+%_______________________________________________________
+\title {\vspace{3cm}{\Huge Conditional Expectation}\\ A Literature Review
+\vspace{2cm}
+}
+
+
+\author{Mohammad Khosravi}
+\affil{Delft Center for Systems \& Control, TU Delft
+	\authorcr
+	\texttt{Mohammad.Khosravi@tudelft.nl}
+	%\texttt{\{Mohammad.Khosravi\}@tudelft.nl}
+}
+	
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\begin{figure}[b]
+\begin{center}
+	\includegraphics[width=0.45\textwidth]{STYLE/IMAGES/DCSC_logo.png}
+\end{center}
+\end{figure}
+%_________________________________________________________
+%_________________________________________________________
+\newpage
+\tableofcontents
+%_________________________________________________________
+%_________________________________________________________
+
+\newpage
+\input{CONTENT/sec_00} % Notations
+
+\newpage
+\input{CONTENT/sec_01}
+
+
+\input{CONTENT/appendix}
+%_________________________________________________________
+%_________________________________________________________
+\bibliography{mybib}
+\bibliographystyle{abbrv}
+%{amsalpha} %siam %amsalpha %IEEEtranS %plain %amsplain %abbrv
+%_________________________________________________________
+\end{document}

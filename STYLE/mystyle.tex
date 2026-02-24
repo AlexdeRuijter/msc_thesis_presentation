@@ -1,0 +1,254 @@
+%===================== Packages ====================
+%\usepackage[numbers]{natbib}
+\usepackage{natbib}
+%\usepackage[noadjust]{cite}
+%
+\usepackage{amsmath, amssymb,mathrsfs, dsfont} %, amsthm
+\usepackage{amsmath,amssymb,bm,bbm}%,bm
+\usepackage{ color, bm,bbm,authblk}
+% , url
+\usepackage{ graphicx,graphics, epstopdf} %,subcaption, transparent
+% ,pgfplots
+\usepackage{algorithm, algorithmicx, multirow, titlecaps}
+\usepackage{threeparttable}
+%\usepackage[T1]{fontenc}
+\usepackage{tikzsymbols}
+
+% Defining mathbbold font
+\DeclareMathAlphabet{\mathbbold}{U}{bbold}{m}{n}
+
+% For pseudocodes and algorithms
+\usepackage[english]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[noend]{algpseudocode} 
+%\input{mystyleproof}
+
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{courier}
+\usepackage{float}
+\usepackage{makecell}
+\setcellgapes{5pt}
+%\usepackage{subcaption}
+%\captionsetup{compatibility=false}
+%\usepackage[options ]{algorithm2e}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+%==================== Commenting ==================
+\newcommand{\cm}[1]{{\color{violet}{{[#1]}}}}
+\newcommand{\cmb}[1]{{\color{blue}{#1}}}
+\newcommand{\cmr}[1]{{\color{red}{#1}}}
+\newcommand{\cmg}[1]{{\color{green}{#1}}}
+\newcommand{\cmm}[1]{{\color{magenta}{#1}}}
+\newcommand{\cmc}[1]{{\color{cyan}{#1}}}
+\newcommand{\cmt}[1]{{\color{teal}{#1}}}
+\newcommand{\cmp}[1]{{\color{purple}{#1}}}
+%=================================================
+\newcommand{\stiny}[1]{{\scalebox{.5}{#1}}}
+\newcommand{\smtiny}[1]{{\scalebox{.63}{#1}}}
+\newcommand{\sstiny}[1]{{\scalebox{.25}{#1}}}
+%================= MATH Abbreviation ==============
+%=============== Abbreviation ==================
+\newcommand{\argmin}{{\mathrm{argmin}}}
+\newcommand{\argmax}{{\mathrm{argmax}}}
+\newcommand*{\argminOp}{\operatornamewithlimits{argmin}\limits}
+\newcommand*{\argmaxOp}{\operatornamewithlimits{argmax}\limits}
+\newcommand*{\minOp}{\operatornamewithlimits{min}\limits}
+\newcommand*{\maxOp}{\operatornamewithlimits{max}\limits}
+\newcommand*{\sumOp}{\operatornamewithlimits{\sum}\limits}
+\newcommand{\Max}{\max\limits}
+\newcommand{\Min}{\min\limits}
+\newcommand{\Sup}{\sup\limits}
+\newcommand{\Inf}{\inf\limits}
+\newcommand{\Sum}{\sum\limits}
+\newcommand{\GP}{\mathcal{G\!P}}
+\newcommand{\ddt}[1]{\frac{\mathrm{d}}{\mathrm{d}t}#1}
+\newcommand{\tr}{{\mathsf{T}}}
+\newcommand{\Hr}{{\mathsf{H}}}
+\newcommand{\zero}{\mathbf{0}}
+\newcommand{\one}{\mathbf{1}}
+\iftrue%\iffalse %<-<-<-<-<-<-<-<-<-<-<-<-<-<-<
+\newcommand{\zeromx}{{\mathbbold{0}}} %<<<<
+\newcommand{\eye}{\mathbb{I}}
+\else
+\newcommand{\zeromx}{{\mathbf{0}}} %<<<<
+\newcommand{\eye}{\mathbf{I}}
+\fi%<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\vc}[1]{{ \mathrm{#1} }}
+\newcommand{\mx}[1]{{ \mathrm{#1} }}
+\newcommand*{\Times}{\operatornamewithlimits{\scalebox{1.5}{$\times$}}\limits} % large x or times
+\newcommand{\dom}{\mathrm{dom}}	% domain of a function
+\newcommand{\conv}{\mathrm{conv}} % convex hull
+\newcommand{\convcone}{\mathrm{convcone}} % convex hull
+\newcommand{\pos}{\mathrm{pos}} % positive hull
+\newcommand{\supp}{\mathrm{supp}} % positive 
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Diag}{\mathrm{Diag}}
+\newcommand{\closure}{\mathrm{cl}} %closure
+\newcommand{\interior}{\mathrm{int}} %closure
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\inner}[2]{{ \langle {#1,#2} \rangle}}
+\newcommand{\nth}{{\text{\tiny{th}}}}
+\newcommand{\trace}{\mathrm{tr}}
+\newcommand{\imag}[1]{\mathrm{imag}(#1)}%imaginary part
+\newcommand{\real}[1]{\mathrm{real}(#1)}%real part
+\newcommand{\img}{\mathrm{im}}   % image 
+%\newcommand{\ker}{\mathrm{ker}}  % kernel
+\newcommand{\limOp}[1]{\operatornamewithlimits{\longrightarrow}_{#1}}
+
+
+
+%% __ mathscr of D, F, X, Y, Z,...
+\newcommand{\Ascr}{{\mathscr{A}}}
+\newcommand{\Bscr}{{\mathscr{B}}}
+\newcommand{\Cscr}{{\mathscr{C}}}
+\newcommand{\Dscr}{{\mathscr{D}}}
+\newcommand{\Escr}{{\mathscr{E}}}
+\newcommand{\Fscr}{{\mathscr{F}}}
+\newcommand{\Xscr}{{\mathscr{X}}}
+\newcommand{\Yscr}{{\mathscr{Y}}}
+\newcommand{\Zscr}{{\mathscr{Z}}}
+
+%% __ mathcal of X, Y, Z,...
+\newcommand{\Acal}{{\mathcal{A}}}
+\newcommand{\Bcal}{{\mathcal{B}}}
+\newcommand{\Ccal}{{\mathcal{C}}}
+\newcommand{\Dcal}{{\mathcal{D}}}
+\newcommand{\Ecal}{{\mathcal{E}}}
+\newcommand{\Fcal}{{\mathcal{F}}}
+\newcommand{\Gcal}{{\mathcal{G}}}
+\newcommand{\Hcal}{{\mathcal{H}}}
+\newcommand{\Ical}{{\mathcal{I}}}
+\newcommand{\Jcal}{{\mathcal{J}}}
+\newcommand{\Kcal}{{\mathcal{K}}}
+\newcommand{\Lcal}{{\mathcal{L}}}
+\newcommand{\Mcal}{{\mathcal{M}}}
+\newcommand{\Ncal}{{\mathcal{N}}}
+\newcommand{\Ocal}{{\mathcal{O}}}
+\newcommand{\Pcal}{{\mathcal{P}}}
+\newcommand{\Qcal}{{\mathcal{Q}}}
+\newcommand{\Rcal}{{\mathcal{R}}}
+\newcommand{\Scal}{{\mathcal{S}}}
+\newcommand{\Tcal}{{\mathcal{T}}}
+\newcommand{\Ucal}{{\mathcal{U}}}
+\newcommand{\Wcal}{{\mathcal{W}}}
+\newcommand{\Xcal}{{\mathcal{X}}}
+\newcommand{\Ycal}{{\mathcal{Y}}}
+\newcommand{\Zcal}{{\mathcal{Z}}}
+
+%% __ mathbb of X, Y, Z,...
+%\newcommand{\Bbb}{{\mathbb{B}}}
+\newcommand{\Cbb}{{\mathbb{C}}}
+\newcommand{\Dbb}{{\mathbb{D}}}
+\newcommand{\Ebb}{{\mathbb{E}}}
+\newcommand{\Fbb}{{\mathbb{F}}}
+\newcommand{\Gbb}{{\mathbb{G}}}
+\newcommand{\Hbb}{{\mathbb{H}}}
+\newcommand{\Ibb}{{\mathbb{I}}}
+\newcommand{\Jbb}{{\mathbb{J}}}
+\newcommand{\Kbb}{{\mathbb{K}}}
+\newcommand{\Lbb}{{\mathbb{L}}}
+\newcommand{\Mbb}{{\mathbb{M}}}
+\newcommand{\Nbb}{{\mathbb{N}}}
+\newcommand{\Pbb}{{\mathbb{P}}}
+\newcommand{\Qbb}{{\mathbb{Q}}}
+\newcommand{\Rbb}{{\mathbb{R}}}
+\newcommand{\Sbb}{{\mathbb{S}}}
+\newcommand{\Tbb}{{\mathbb{T}}}
+\newcommand{\Ubb}{{\mathbb{U}}}
+\newcommand{\Vbb}{{\mathbb{V}}}
+\newcommand{\Xbb}{{\mathbb{X}}}
+\newcommand{\Ybb}{{\mathbb{Y}}}
+\newcommand{\Zbb}{{\mathbb{Z}}}
+\newcommand{\bbo}{\mathbbold{o}}
+%\newcommand{\bbo}{\mathbb{o}}
+\newcommand{\bbh}{\mathds{h}}
+%\newcommand{\bbk}{\mathds{k}}
+%\newcommand{\bbk}{\mathbbold{k}}
+\newcommand{\bbk}{\mathbbm{k}}
+
+%% __ hat of f, g
+\newcommand{\hatf}{{\hat{f}}}
+\newcommand{\hatg}{{\hat{g}}}
+%_______________________________________________
+\newcommand{\SumN}{\sum\limits_{i=1}^N}
+\newcommand{\WWbar}{\widetilde{\mathbb{W}}}
+
+%% __ other fonts (Probability)
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\WW}{\mathbb{W}}
+\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\KK}{\bm{\mathcal{K}}}
+\newcommand{\GG}{\bm{\mathcal{G}}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\JJ}{\mathcal{J}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\ZZ}{\mathcal{Z}}
+
+%==================================================
+%===================== Theorem ====================
+\let\proof\relax
+\let\endproof\relax
+\usepackage{amsthm}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Propositon}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem*{claim}{Claim}
+
+%==================================================
+%==================== Figures Path ================
+%\graphicspath{{figures/}}
+%==================================================
+%===================== TODO List ==================
+\iffalse
+\let\labelindent\relax
+\usepackage{enumitem}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}% 
+	\hspace{-2.5pt}}
+% for being done and remain in list!
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}} 
+% for being conceled but remain in the list!
+\fi 
+%=================================================
+%==== Modify style ===============================
+\iftrue %<--\iffalse
+\usepackage[colorlinks=true]{hyperref}
+	\usepackage{xcolor}
+	\hypersetup{
+		colorlinks,
+		linkcolor={blue!55!black},
+		citecolor={red!55!black},
+		urlcolor={blue!80!black}
+	}
+	%\usepackage[a4paper, total={7.75in, 10.75in}]{geometry}  % wide
+	\usepackage[a4paper, total={7in, 10in}]{geometry}   % moderate wide
+	\allowdisplaybreaks
+	\newcommand{\change}[1]{{\color{red}{#1}}}
+\fi
+%=================================================
