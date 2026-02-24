@@ -1,159 +1,24 @@
-%----------------------------------------------------------
-%==========================================================
+%---------------------------------------------------
+%===================================================
 %===================== Packages ===========================
-
-%===================== Colors =============================
-\usepackage[cmyk]{xcolor}
-
-% Define the TUD colors
-\definecolor{TUcyan}{cmyk}{1, 0, 0, 0}
-\definecolor{TUwhite}{cmyk}{0, 0, 0, 0}
-\definecolor{TUblack}{cmyk}{0, 0, 0, 1}
-
-% Complementary TUD colors https://www.tudelft.nl/huisstijl/bouwstenen/kleur
-\definecolor{TUdarkblue}{cmyk}{1, 0.80, 0.08, 0.70}
-\definecolor{TUturqois}{cmyk}{0.72, 0, 0.24, 0}
-\definecolor{TUlightblue}{cmyk}{0.98, 0.40, 0, 0}
-\definecolor{TUpurple}{cmyk}{0.65, 1, 0, 0.12}
-\definecolor{TUpink}{cmyk}{0, 0.70, 0, 0}
-\definecolor{TUraspberry}{cmyk}{0.05, 1, 0.48, 0.30}
-\definecolor{TUred}{cmyk}{0, 0.85, 0.75, 0}
-\definecolor{TUorange}{cmyk}{0, 0.70, 0.75, 0}
-\definecolor{TUyellow}{cmyk}{0, 0.31, 0.98, 0}
-\definecolor{TUlightgreen}{cmyk}{0.63, 0, 0.84, 0}
-\definecolor{TUdarkgreen}{cmyk}{1, 0, 0.68, 0.04}
-\definecolor{TUgrey}{cmyk}{0, 0, 0, 0.80}
-
-
-
-
-
 %% referencing packages: ----------------------------------
-\makeatletter
-\@ifclassloaded{beamer}{}{
-  \RequirePackage{authblk}
-}
-\makeatother
-%\usepackage{aliascnt}
 %\usepackage{natbib}
 %\usepackage[numbers]{natbib}
-%\usepackage[numbers,compress]{natbib}
+\usepackage[numbers,compress]{natbib}
 %\usepackage[noadjust]{cite}
 
-%=========================================================
-%====== FONT SETTINGS ====================================
-%\usepackage[T1]{fontenc}
-%\usepackage{ragged2e}
-\usepackage{roboto}
-\newcommand{\titlefont}[1]{\textbf{#1}} %{\usefont{T1}{Roboto-Black}{m}{n}\selectfont}
-%\usepackage{amsmath}
-%\usepackage{amssymb,mathrsfs} 
-%\usepackage{bm,bbm}
-\usepackage{dsfont} 
-%\usepackage{lmodern}  % Latin Modern font (improved version of Computer Modern)
-
-% Choose one of the following font packages:
-% Libertine font:
-%\usepackage{libertine}     
-%\usepackage[libertine]{newtxmath}
-
-% Palatino font:
-%\usepackage{newpxtext}
-%\usepackage{newpxmath}
-%\let\openbox\relax % to avoid conflict with amsthm
-
-% Johannes Kepler font:
-%\usepackage{kpfonts}
-
-% Times New Roman font:
-%\usepackage{newtxtext}
-%\usepackage{newtxmath}
-
-% XCharter font:
-%\usepackage{XCharter}
-%\usepackage[charter]{newtxmath}
-%\let\Bbbk\relax % to avoid conflict with amsmath	
-
-% Allow scaling:
-\usepackage[scr=rsfs]{mathalfa} % for \mathscr
-
-
-%=========================================================
-%====== PACKAGES =========================================
-%\usepackage[draft]{modularnotes} % A custom package for this lecturenotes series
-%\usepackage{mathtools}
-\usepackage[most]{tcolorbox} % For the boxes
-%\usepackage[shortlabels]{enumitem}
-\usepackage{amsthm}
-\usepackage{thmtools}
-
-
-\usepackage{tikz}
-\usetikzlibrary{external}
-\tikzexternalize[prefix=FIGURES/]
-\tikzset{external/system call={pdflatex -shell-escape -halt-on-error -interaction=batchmode -output-directory="aux/" -jobname "\image" "\texsource"}}
-
-% Force TikZ to make externalized figures only when we require it:
-\tikzexternaldisable
-
-\usetikzlibrary{svg.path}
-
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
-\pgfplotsset{compat=1.18,
-    legend image code/.code={
-        \draw[mark repeat=2, mark phase=2] 
-        plot coordinates {
-            (0cm, 0cm) 
-            (0.2cm, 0cm) 
-            (0.4cm, 0cm)
-        };
-    }
-}
-\usepgfplotslibrary{fillbetween,groupplots}
-
-
-
-%=========================================================
-%====== HEADER BOX STYLE (MIMICS PDF) ====================
-\newtcolorbox{headerbox}{
-  colback=white,
-  colframe=black,
-  boxrule=0.9pt,      % thickness of border
-  arc=0pt,            % square corners like PDF
-  left=4pt,           % inner padding
-  right=4pt,
-  top=5pt,
-  bottom=5pt
-}
-
-%====== TODO note ========================================
-\newtcolorbox{todonote}[1][breakable, enhanced]
-{
-  colframe = TUwhite!20!TUblack,
-  colback  = TUyellow!60!TUred,  
-  title    = {\texttt{\textbf{TO-DO}}},
-  #1, 
-}
-
-
-\newcommand{\change}[1]{{\color{TUred}{#1}}}
-
-%===== ADD a shortcut to achieve the colorbox ============
-\newcommand{\todo}[1]{
-\begin{todonote} 
-#1 
-\end{todonote}
-}
-%=========================================================
-%=========================================================
-
+%% math packages: -----------------------------------------
+\usepackage{amsmath,amssymb,mathrsfs,amsfonts,mathtools} 
+\usepackage{bm,bbm,dsfont} 
+% \usepackage{physics}
+\newcommand{\hmmax}{0}
+\newcommand{\bmmax}{0}
 
 %% graphics packages: -------------------------------------
-\usepackage{graphicx,graphics, epstopdf} %, subcaption, transparent, pgfplots
+\usepackage{color,graphicx,graphics, epstopdf} %, subcaption, transparent, pgfplots
 
 %% table/figures/pseudocode/algorithms packages: ---------
-\usepackage{algorithm,algorithmicx,multirow, titlecaps}  
+\usepackage{algorithm, algorithmicx, multirow, titlecaps}  
 %\usepackage[options ]{algorithm2e}
 \usepackage[english]{babel}
 %\usepackage[utf8]{inputenc}
@@ -168,6 +33,33 @@
 \usepackage{multirow}
 \usepackage{courier}
 \usepackage{float}
+\usepackage{multirow, titlecaps} 
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{courier}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{diagbox}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage[most]{tcolorbox}
+
+% Add an inline version of the todonote
+\newtcolorbox{todonote}[1][breakable, enhanced]
+{
+  colframe = white!25!black,
+  colback  = orange!80!white,  
+  title    = {\texttt{\textbf{TO-DO}}},
+  #1, 
+}
+\newcommand{\todo}[1]{% A inline command for the same idea
+\begin{todonote}
+#1
+\end{todonote}
+}
+
 % \usepackage{makecell}
 % \setcellgapes{5pt}
 %\usepackage{subcaption}
@@ -176,6 +68,8 @@
 
 % Other packages: -----------------------------------------
 %\usepackage{authblk} 
+\allowdisplaybreaks
+\usepackage{verbatim}
 
 % Defining mathbbold font: --------------------------------
 \DeclareMathAlphabet{\mathbbold}{U}{bbold}{m}{n}
@@ -186,36 +80,36 @@
 
 % url & collering links------------------------------------
 \usepackage{url}
-\iftrue    % Single column/IEEE Tran. L-CSS/Elsevier
+ \iftrue    % Single column/IEEE Tran. L-CSS/Elsevier
 %\iffalse    %<-- ifacconf does not allow hpperlinking - uncomment it
-    %\usepackage[colorlinks=false,hidelinks]{hyperref}
-    \hypersetup{
-        hypertexnames=false,
-        colorlinks,
-		linkcolor={TUlightblue!60!TUdarkblue},
-		citecolor={TUraspberry},
-		urlcolor={TUdarkblue}
+    \usepackage[colorlinks=true]{hyperref}
+	\usepackage{xcolor}
+	\hypersetup{
+		colorlinks,
+		linkcolor={blue!90!black},
+		citecolor={red!90!black},
+		urlcolor={blue!20!black}
 	}
 	\allowdisplaybreaks
 \fi
-%==================== Commenting ==========================
-\newcommand{\cm}[1]{{\color{TUpink}{{[#1]}}}}
-\newcommand{\cmb}[1]{{\color{TUlightblue}{#1}}}
-\newcommand{\cmr}[1]{{\color{TUred}{#1}}}
-\newcommand{\cmg}[1]{{\color{TUlightgreen}{#1}}}
-\newcommand{\cmm}[1]{{\color{TUraspberry}{#1}}}
-\newcommand{\cmc}[1]{{\color{TUcyan}{#1}}}
-\newcommand{\cmt}[1]{{\color{TUturqois}{#1}}}
-\newcommand{\cmp}[1]{{\color{TUpurple}{#1}}}
+%==================== Commenting ==================
+\newcommand{\cm}[1]{{\color{violet}{{[#1]}}}}
+\newcommand{\cmb}[1]{{\color{blue}{#1}}}
+\newcommand{\cmr}[1]{{\color{red}{#1}}}
+\newcommand{\cmg}[1]{{\color{green}{#1}}}
+\newcommand{\cmm}[1]{{\color{magenta}{#1}}}
+\newcommand{\cmc}[1]{{\color{cyan}{#1}}}
+\newcommand{\cmt}[1]{{\color{teal}{#1}}}
+\newcommand{\cmp}[1]{{\color{purple}{#1}}}
 %==========================================================
-\newcommand{\mtiny}[1]{{\scalebox{.75}{#1}}}
-\newcommand{\smtiny}[1]{{\scalebox{.63}{#1}}}
-\newcommand{\stiny}[1]{{\scalebox{.5}{#1}}}
+\newcommand{\mmtiny}[1]{{\scalebox{.90}{#1}}}
+\newcommand{\mtiny}[1]{{\scalebox{.81}{#1}}}
+\newcommand{\mstiny}[1]{{\scalebox{.67}{#1}}}
+\newcommand{\smtiny}[1]{{\scalebox{.5}{#1}}}
+\newcommand{\stiny}[1]{{\scalebox{.38}{#1}}}
 \newcommand{\sstiny}[1]{{\scalebox{.25}{#1}}}
 %================= MATH Abbreviation ======================
-%================= Abbreviation ===========================
-\newcommand*{\argmin}{\operatornamewithlimits{argmin}\limits}
-\newcommand*{\argmax}{\operatornamewithlimits{argmax}\limits}
+%=============== Abbreviation ==================
 \newcommand*{\argminOp}{\operatornamewithlimits{argmin}\limits}
 \newcommand*{\argmaxOp}{\operatornamewithlimits{argmax}\limits}
 \newcommand*{\minOp}{\operatornamewithlimits{min}\limits}
@@ -248,26 +142,26 @@
 \newcommand{\Sup}{\sup\limits}
 \newcommand{\Inf}{\inf\limits}
 \newcommand{\Sum}{\sum\limits}
-%----------------------------------------------------------
-%--- Math Notaions-----------------------------------------
+%--- Math Notaions-----------------------------
 \newcommand{\GP}{\mathcal{G\!P}}             % Gaussian process
 \newcommand{\ddt}[1]{\frac{\mathrm{d}}{\mathrm{d}t}#1} % d/dt
-%\newcommand{\tr}{{\mathsf{T}}}              % transpose supscript
-\newcommand{\tr}{{\smtiny{$\mathsf{T}$ }}\!} % transpose supscript - small version
+% \renewcommand{\tr}{{\mathsf{T}}}              % transpose supscript
+\renewcommand{\tr}{{\text{\mtiny{$\mathsf{T}$}}}}              % transpose supscript
+%\newcommand{\tr}{{\smtiny{$\mathsf{T}$ }}\!} % transpose supscript - small version
 \newcommand{\Hr}{{\mathsf{H}}}               % Hermitian supscript
 \newcommand{\zero}{\mathbf{0}}               % all zero vector/function
 \newcommand{\one}{\mathbf{1}}                % all one vector/function
 \newcommand{\onefun}{\mathbbm{1}}            % all one vector/function   
 %\newcommand{\onefun}{\mathds{1}}            % all one vector/function
 \iftrue%\iffalse %<-<-<-<-<-<-<-<-<-<-<-<-<-<-<
-    % matrices I & 0
-    \newcommand{\zeromx}{{\mathbbold{0}}} %<<<<
-    \newcommand{\eye}{\mathbb{I}}
+% matrices I & 0
+\newcommand{\zeromx}{{\mathbbold{0}}} %<<<<
+\newcommand{\eye}{\mathbb{I}}
 \else
-    \newcommand{\zeromx}{{\mathbf{0}}} %<<<<
-    \newcommand{\eye}{\mathbf{I}}
+\newcommand{\zeromx}{{\mathbf{0}}} %<<<<
+\newcommand{\eye}{\mathbf{I}}
 \fi%<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<-<
-\newcommand{\rank}{\mathrm{rank}}     % rank of a matrix  
+%\newcommand{\rank}{\mathrm{rank}}     % rank of a matrix  
 \newcommand{\vc}[1]{{ \mathrm{#1} }}  % vector op
 \newcommand{\mx}[1]{{ \mathrm{#1} }}  % matrix op 
 \newcommand*{\Times}{\operatornamewithlimits{\scalebox{1.5}{$\times$}}\limits} % large X or times for Cartesian product
@@ -283,12 +177,12 @@
 \newcommand{\interior}{\mathrm{int}}    % interior
 \newcommand{\linspan}{\mathrm{span}}    % span
 \newcommand{\proj}{\mathrm{proj}}       % projection
-\newcommand{\norm}[1]{\|#1\|}           % norm    
+%\newcommand{\norm}[1]{\|#1\|}           % norm    
 \newcommand{\inner}[2]{{ \langle {#1,#2} \rangle}} % inner product
 \newcommand{\nth}{{\text{\tiny{th}}}}   % n-th 
-\newcommand{\trace}{\mathrm{tr}}        % trace
+\renewcommand{\trace}{\mathrm{tr}}        % trace
 \newcommand{\imag}[1]{\mathrm{imag}(#1)}% imaginary part of
-\newcommand{\real}[1]{\mathrm{real}(#1)}% real part of
+%\newcommand{\real}[1]{\mathrm{real}(#1)}% real part of
 \newcommand{\img}{\mathrm{im}}          % image of a map 
 %\newcommand{\ker}{\mathrm{ker}}        % kernel of map
 \renewcommand{\emptyset}{\varnothing}   % empty set
@@ -296,17 +190,18 @@
 \newcommand{\fro}{\mathrm{F}}           % subscript for Frobenius norm
 \newcommand{\floor}[1]{\lfloor #1\rfloor} % floor of a number
 \newcommand{\ceil}[1]{\lceil #1\rceil}    % ceil of a number
+\newcommand{\logdet}{\mathrm{logdet}}       % logdet
+\renewcommand{\vec}{\mathrm{vec}}           % vec
+
 
 %\newcommand{\ol}[1]{\overline{#1}}
 %\newcommand{\ul}[1]{\underline{#1}}
 \newcommand{\ol}[1]{\overline{#1}}
-%\newcommand{\ul}[1]{\underlline{#1}}
-%\renewcommand{\ul}[1]{\underlline{#1}}
+% \newcommand{\ul}[1]{\underlline{#1}}
 
-\newcommand{\supscrplus}{{\smtiny{$+$}}\!} % supscript - small version
 
-%----------------------------------------------------------
-%% Shorthand notations for non-standard math fonts --------
+
+
 %% __ mathscr of D, F, X, Y, Z,...
 \newcommand{\Ascr}{{\mathscr{A}}}
 \newcommand{\Bscr}{{\mathscr{B}}}
@@ -394,7 +289,6 @@
 %\newcommand{\bbk}{\mathbbold{k}}
 \newcommand{\bbk}{\mathbbm{k}}
 
-%----------------------------------------------------------
 %% __ hat/tilde/.. of f, g
 \newcommand{\hatf}{{\hat{f}}}
 \newcommand{\hatg}{{\hat{g}}}
@@ -402,75 +296,34 @@
 \newcommand{\tildeg}{{\tilde{g}}}
 
 %% Probability --------------------------------------------
-% \newcommand{\Prb}{\mathbb{P}}
-% \newcommand{\PrbP}{\mathbb{P}}
-% \newcommand{\PrbQ}{\mathbb{Q}}
-% \newcommand{\Exp}{\mathbb{E}}
-
-\newcommand{\Prb}{\mathds{P}}
-\newcommand{\PrbP}{\mathds{P}}
-\newcommand{\PrbQ}{\mathds{Q}}
-\newcommand{\Exp}{\mathds{E}}
-
-\newcommand\indep{\protect\mathpalette{\protect\indeP}{\perp}}
-\def\indeP#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
-
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Cov}{\mathrm{Cov}}
-
-
-
+\newcommand{\Prb}{\mathbb{P}}
+\newcommand{\PrbP}{\mathbb{P}}
+\newcommand{\PrbQ}{\mathbb{Q}}
+%\newcommand{\Exp}{\mathbb{E}}
 % ?
-%----------------------------------------------------------
 %=========== Theorem ======================================
-%\iffalse %% uncomment for Single column + IEEE Trans (TAC, L-CSS,...)
-\iftrue   %% uncomment for Elsevier (Automatica, System & Control Letters,...)  + ifacconf
+\iffalse %% uncomment for Single column + IEEE Trans (TAC, L-CSS,...)
+%\iftrue   %% uncomment for Elsevier (Automatica, System & Control Letters,...)  + ifacconf
     %\let\proof\relax
     %\let\endproof\relax
     %\usepackage{amsthm}
-    \renewcommand{\qedsymbol}{$\blacksquare$}
-    
-    % We clear existing definitions to avoid counter clashes.
-% We declare all environments using thmtools.
-\declaretheorem[name=Theorem]{theorem}
-\declaretheorem[name=Definition]{definition}
-\declaretheorem[name=Assumption]{assumption}
-\declaretheorem[name=Proposition,numberlike=theorem]{proposition}
-\declaretheorem[name=Corollary,numberlike=theorem]{corollary}
-\declaretheorem[name=Lemma,numberlike=theorem]{lemma}
-\declaretheorem[name=Remark]{remark}
-\declaretheorem[name=Example]{example}
-\declaretheorem[name=Problem]{problem}
-
-
-%    % \input{mystyleproof}
-%    \theoremstyle{plain}
-%    \newtheorem{theorem}{Theorem}
-%    %\newtheorem*{theorem*}{Theorem}
-%    \newtheorem{definition}{Definition}
-%    %\newtheorem*{definition*}{Definition}
-%    \newtheorem{assumption}{Assumption}
-    
-    % Allow numbering of propositions, corollaries, and lemmas to be the same as theorems 
-    % while at the same time allowing them to be referenced separately using cleveref.
-%    \newaliascnt{proposition}{theorem}
-%    \newtheorem{proposition}[proposition]{Proposition}
-%    \aliascntresetthe{proposition}
-    
-%    \newaliascnt{corollary}{theorem}
-%    \newtheorem{corollary}[corollary]{Corollary}
-%    \aliascntresetthe{corollary}
-
-%    \newaliascnt{lemma}{theorem}
-%    \newtheorem{lemma}[lemma]{Lemma} 
-%    \aliascntresetthe{lemma} 
-
-%    \newtheorem{remark}{Remark}
-%    \newtheorem{example}{Example}
+    %\renewcommand{\qedsymbol}{$\blacksquare$}
+    \input{mystyleproof}
+    \theoremstyle{plain}
+    \newtheorem{theorem}{Theorem}
+    %\newtheorem*{theorem*}{Theorem}
+    \newtheorem{definition}{Definition}
+    %\newtheorem*{definition*}{Definition}
+    \newtheorem{assumption}{Assumption}
+    \newtheorem{proposition}[theorem]{Proposition}
+    \newtheorem{corollary}[theorem]{Corollary}
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem{remark}{Remark}
+    \newtheorem{example}{Example}
     %\newtheorem*{example*}{Example}
     %\newtheorem{claim}{Claim}
     %\newtheorem*{claim*}{Claim}
-%    \newtheorem{problem}{Problem}
+    \newtheorem{problem}{Problem}
     %\newtheorem*{problem*}{Problem}
     
     \newcommand\xqed[1]{%
@@ -517,7 +370,7 @@
 %=========== TODO List ====================================
 \iffalse
 \let\labelindent\relax
-%\usepackage[shortlabels]{enumitem}
+\usepackage{enumitem}
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
 \usepackage{pifont}
@@ -551,35 +404,6 @@
 \fi 
 %==========================================================
 %==========================================================
-
-%==========================================================
-%========== ORPHANS =======================================
-%==========================================================
-\newcommand{\orphan}[1]{{\color{TUdarkblue}{{#1}}}}
+\usepackage[nameinlink]{cleveref}
 
 
-
-% Always load cleveref at the end to avoid conflicts with other packages
-\usepackage{cleveref}
-
-% Define the names for cleveref references
-% Note, we prefer to capitalize the first letter of the reference name, as in "Theorem 1" instead of "theorem 1".
-\crefname{definition}{Definition}{Definitions}
-\Crefname{definition}{Definition}{Definitions}
-\crefname{assumption}{Assumption}{Assumptions}
-\Crefname{assumption}{Assumption}{Assumptions}
-\crefname{lemma}{Lemma}{Lemmas}
-\Crefname{lemma}{Lemma}{Lemmas}
-\crefname{proposition}{Proposition}{Propositions}
-\Crefname{proposition}{Proposition}{Propositions}
-\crefname{corollary}{Corollary}{Corollaries}
-\Crefname{corollary}{Corollary}{Corollaries}
-\crefname{theorem}{Theorem}{Theorems}
-\Crefname{theorem}{Theorem}{Theorems}
-\crefname{remark}{Remark}{Remarks}
-\Crefname{remark}{Remark}{Remarks}
-\crefname{example}{Example}{Examples}
-\Crefname{example}{Example}{Examples}
-
-\crefformat{equation}{#2(#1)#3}
-\Crefformat{equation}{#2(#1)#3}

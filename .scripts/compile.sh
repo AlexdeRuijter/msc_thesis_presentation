@@ -28,6 +28,13 @@ else
     MAIN_FILE="$RAW_MAIN"
 fi
 
+# Make sure the auxiliary file has a FIGURES subdirectory for generated figures
+mkdir -p "$AUX_DIR/FIGURES"
+if [ -d "DATA" ]; then
+    mkdir -p "$AUX_DIR/DATA"
+    cp -r DATA/* "$AUX_DIR/DATA/"
+fi 
+
 # Extract the basename (jobname) for intermediate files
 # e.g., "main"
 BASENAME=$(basename "$MAIN_FILE" .tex)
@@ -46,12 +53,11 @@ echo "------------------------------------------------"
 
 echo "--- Pass 1: Initial Compile ---"
 tput setaf 1
-texfot pdflatex -draftmode \
+texfot lualatex -shell-escape \
                 -interaction=nonstopmode \
                 -output-directory="$AUX_DIR" \
                 "$MAIN_FILE"
 tput sgr0
-
 # Check for citations in the generated aux file
 if grep -q '\\citation' "$AUX_DIR/$BASENAME.aux"; then
     tput setaf 2
@@ -63,7 +69,8 @@ fi
 
 echo "--- Pass 2: Resolving References ---"
 tput setaf 3
-texfot pdflatex -draftmode \
+texfot lualatex -shell-escape \
+                -draftmode \
                 -interaction=nonstopmode \
                 -output-directory="$AUX_DIR" \
                 "$MAIN_FILE"
@@ -71,7 +78,8 @@ tput sgr0
 
 echo "--- Pass 3: Final Output ---"
 tput setaf 4
-texfot pdflatex -interaction=nonstopmode \
+texfot lualatex -shell-escape \
+                -interaction=nonstopmode \
                 -output-directory="$AUX_DIR" \
                 "$MAIN_FILE"
 tput sgr0

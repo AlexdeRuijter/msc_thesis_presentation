@@ -1,52 +1,228 @@
-%_________________________________________________________
-\documentclass[11pt, a4paper, oneside, reqno]{article}
+\documentclass[aspectratio=169, notheorems, 10pt]{beamer}
 
-%_Style File _____________________________________________
+% --- THIS BLOCK RESOLVES THE PATH INCONSISTENCY ---
+\makeatletter
+\def\input@path{{theme/}} 
+\makeatother
+% --------------------------------------------------
+
+\usetheme{TUDelft}
+% ==============================================================================
+
 \input{STYLE/mystyle}
 \input{STYLE/mynotations}
 
-%_______________________________________________________
-%_______________________________________________________
-\title {\vspace{3cm}{\Huge Conditional Expectation}\\ A Literature Review
-\vspace{2cm}
-}
+% --- Speaker Notes Setup ---
+% To view notes, you would typically use:
+%\setbeameroption{show notes on second screen}
+% However, for this preview, we keep slides standard.
 
+% --- Metadata ---
+\title[Learning Volterra Models]{Learning Volterra Models:\\ \hspace{1em} Just Be \emph{Directionally} Excited!}
+\subtitle{Non-Asymptotic Bounds via Directional Probabilistic Excitation}
+\institute[Delft]{Delft University of Technology}
+\date{\today}
+\author[A.L. de Ruijter]{Alex de Ruijter}
 
-\author{Mohammad Khosravi}
-\affil{Delft Center for Systems \& Control, TU Delft
-	\authorcr
-	\texttt{Mohammad.Khosravi@tudelft.nl}
-	%\texttt{\{Mohammad.Khosravi\}@tudelft.nl}
-}
-	
 \begin{document}
 
-\maketitle
-\thispagestyle{empty}
-\begin{figure}[b]
-\begin{center}
-	\includegraphics[width=0.45\textwidth]{STYLE/IMAGES/DCSC_logo.png}
-\end{center}
-\end{figure}
-%_________________________________________________________
-%_________________________________________________________
-\newpage
-\tableofcontents
-%_________________________________________________________
-%_________________________________________________________
+% --- Slide 1: Title ---
+\begin{frame}[plain, noframenumbering]
+    \titlepage
+    \note{
+        (0:00--1:00) Title and Context
+        
+        
+    }
+\end{frame}
 
-\newpage
-\input{CONTENT/sec_00} % Notations
+\begin{frame}{What are we learning}
+    Goal of this part: 
+    \begin{center}
+       Understand intuitively fading and non-fading memory systems\\
+        Show ball vs clipping lid behaviour, ball forgets, lid gets stuck hence remembers.
+    \end{center}
+    Intuition of example 1 (peak detector)
+\end{frame}
 
-\newpage
-\input{CONTENT/sec_01}
+\begin{frame}{Volterra Series: A Universal Representation}
+       Goal of the frame; introduce the volterra series
+
+       Make the LIP structure explicit, show how the kernels are the parameters we want to learn, and how the input-output relationship is a linear function of these parameters.
+
+       Technical details: show the series expansion, explain the role of the kernels, and emphasize the linear-in-parameters nature of the model, which is crucial for our results.
+\end{frame}
+
+\begin{frame}{The curse of dimensionality}
+    Goal of the frame: show how the number of parameters grows combinatorially with the order and memory length, making learning difficult.
+
+    Technical details: Combinatorial explosion of parameters.
+\end{frame}
+
+{ 
+
+\begin{frame}[plain]{Persistence of Excitation in Finite Trajectories (PPE)}
+    \usetikzlibrary{calc, positioning, decorations.pathreplacing, backgrounds, shapes.geometric}
+
+    \begin{figure}[htbp, center]
+        \centering
+        \begin{tikzpicture}[>=latex, font=\small, scale=0.5]
+
+        % Define parameters
+        \def\totalWidth{12}
+        \def\topHeight{2}
+        \def\bottomHeight{2}
+
+        % --- TOP GRAPH: Asymptotic View ---
+            \begin{scope}[shift={(0, 5cm)}]
+            \draw[->] (0,0) -- (\totalWidth + 0.5, 0) node[right] {$t$ (Large Horizon)};
+            \draw[->] (0,0) -- (0, \topHeight + 0.5) node[above] {$u(t)$};
+
+            \node[anchor=north west, align=left] at (\totalWidth, \topHeight+1) {
+                \textbf{Asymptotic View}\\
+                Signal contains recurrent excitation\\
+                (sufficient over infinite time)
+            };
+
+            % Generate a signal that looks like a series of sparse bumps/waves
+            % We create a few "blips" to show the pattern repeats over time
+            \draw[TUdarkblue, thick] plot [smooth, tension=0.8] coordinates {
+                (0,0.5) (1,0.5) (1.5,1.2) (2,0.5) (3,0.5) (4,0.5) 
+                (5.2,0.5) (5.5,1.2) (5.8,0.5) % This is our target blip
+                (7,0.5) (8,0.5) (8.5,1.5) (9,0.5) (10.5,0.5) (11,1.0) (11.5,0.5) (12,0.5)
+            };
+
+            % Define the Zoom window around the specific blip at x=5.5
+            % This blip corresponds to the "single event" in the bottom graph
+            \coordinate (Z1) at (4.5, -0.2);
+            \coordinate (Z2) at (6.5, 2.0);
+            
+            \draw[TUred, thick] (Z1) rectangle (Z2);
+            \node[TUred, above] at (5.5, 2.0) {Finite Window};
+        \end{scope}
 
 
-\input{CONTENT/appendix}
-%_________________________________________________________
-%_________________________________________________________
-\bibliography{mybib}
-\bibliographystyle{abbrv}
-%{amsalpha} %siam %amsalpha %IEEEtranS %plain %amsplain %abbrv
-%_________________________________________________________
+        % --- BOTTOM GRAPH: Finite Identification View ---
+            \begin{scope}[shift={(0, 0)}]
+            % Axis
+            \draw[->] (0,0) -- (\totalWidth + 0.5, 0) node[right] {$\hat{t}$ (Window $N=20$)};
+            \draw[->] (0,0) -- (0, \topHeight+ 0.5 ) node[above] {$u(t)$};
+
+            \node[anchor=north west, align=left] at (\totalWidth, \topHeight+1) {
+                \textbf{Finite Identification View}\\
+                Sparse excitation: only one event\\
+                captured in window
+            };
+
+            % Mapping: t=0..20 maps to x=0..12
+            % Factor = 0.6
+            % Event is at t=16. x = 16 * 0.6 = 9.6
+            
+            % Baseline y=0.5, Peak y=1.8
+            
+            % 1. Draw the smooth continuous curve
+            \draw[TUdarkblue, very thick] plot [smooth, tension=0.8] coordinates {
+                (0,0.5) (5,0.5) (8,0.5) 
+                (9.0, 0.55) % t=15 start rise
+                (9.6, 1.8)  % t=16 peak
+                (10.2, 0.55) % t=17 end fall
+                (11, 0.5) (12, 0.5)
+            };
+
+            % 2. Draw the discrete data points (Red dots)
+            % t goes from 0 to 20. x = t * 0.6
+            \foreach \t in {0,1,...,20} {
+                % Calculate x position
+                \pgfmathsetmacro{\xpos}{\t * 0.6}
+                
+                % Calculate y position (logic: if t=16 y=1.8, else y=0.5)
+                % We add small neighbours for smoothness visualization
+                \pgfmathsetmacro{\ypos}{
+                    ifthenelse(\t==16, 1.8, 
+                        ifthenelse(\t==15 || \t==17, 0.6, 0.5)
+                    )
+                }
+                
+                % Draw the dot
+                \filldraw[TUdarkblue] (\xpos, \ypos) circle (2pt);
+            }
+
+            % 3. Axis Labels
+            \foreach \t in {0, 5, 10, 15, 20} {
+                \draw (\t*0.6, 0.1) -- (\t*0.6, -0.1) node[below, font=\footnotesize] {\t};
+            }
+            % Highlight the event time
+            \draw (16*0.6, 0.1) -- (16*0.6, -0.1) node[below, font=\footnotesize, TUred] {16};
+
+            % Annotations
+            \draw[<->] (0, 0.8) -- (8.5, 0.8) node[midway, above] {\small $\Delta u(t) \approx 0$};
+            \node[TUred] at (9.6, 2.1) {Single Excitation};
+            %\draw[TUred, dashed] (9.6, 1.8) -- (9.6, 2.0);
+
+        \end{scope}
+
+
+        % --- CONNECTIONS ---
+        \draw[dashed, TUred, thick] (4.5, 4.8) -- (0, 3.45); % Top-left of zoom box to Bottom-left
+        \draw[dashed, TUred, thick] (6.5, 4.8) -- (\totalWidth, 2.8);  % Top-right of zoom box to Bottom-right
+
+    \end{tikzpicture}
+    \caption{Visualizing the disconnect between asymptotic excitation and finite identification. The top plot shows a sparse signal over a long horizon. The bottom plot zooms into a finite window ($N=20$) where only a single data point ($t=16$) provides excitation, while the rest of the window contains little to no information.}
+\end{figure}    
+    \vspace{3em}
+%    \begin{itemize}
+%        \item \textbf{Classical PE} Asymptotic. Every direction eventually excited.
+%        \item \textbf{PPE} Probabilistic. With high probability every direction receives enough excitation often enough to control the Gram matrix.
+%    \end{itemize}
+
+    \note{
+    }
+\end{frame}
+
+\begin{frame}{Shining a Light on Excitation}
+    Goal of the slide:
+    Compare excitation criteria by using a room and light analogy
+    \begin{itemize}
+        \item Classical PE: Asymptotic, every direction eventually excited, long shutter times needed to see anything.
+        \item BMSB: Blockwise, we need to see the room once in every block, we can not stay fixed on a corner for a long time.
+        \item dPE: directional (flashlight), probabilistic (we don't need fixed movements) - with high probability we can understand what is in the room over a finite time window, even if we only see one corner at a time, as long as we see all corners often enough.
+    \end{itemize}
+\end{frame}
+}
+
+\begin{frame}{Main Result: Non-Asymptotic Bounds for Volterra Learning}
+    Goal of the slide: State the main theorem in an intuitive way, emphasizing the role of directional probabilistic excitation and how it leads to finite-sample guarantees for learning Volterra models.
+    No exact constants, just the implications
+
+    Technical details: State the theorem informally, sub-Gaussian assumption, expain the key takeaways such as the $N \cong D$ scaling
+\end{frame}
+
+\begin{frame}{Implications}
+    Goal of the slide: Discuss the practical implications of the main result, $N \cong D$ scaling, influence of beta.
+\end{frame}
+
+\begin{frame}{Validation 1: Excitation matters}
+    Goal of the slide: Show empirical results that demonstrate the importance of excitation in learning Volterra models, comparing scenarios with different excitation levels.
+
+
+\end{frame}
+
+\begin{frame}{Validation 2: Noise and Dimension}
+    Goal of the slide: Present empirical results that illustrate how noise and model dimension affect the learning performance, validating the theoretical predictions.
+\end{frame}
+
+\begin{frame}{Feedback costs more}
+    Goal of the slide: Show that NARMAX models, which include feedback, require more samples to learn effectively compared to purely feedforward Volterra models, due to the increased complexity and potential for error propagation.
+
+    Technical details: Show that the sample complexity for NARMAX models is higher than for Volterra models, and provide empirical evidence to support this claim, such as learning curves or error rates for both model types under similar conditions.
+\end{frame}
+
+\begin{frame}{Conclusion and Future Work}
+    Goal of the slide: Summarize the key findings of the presentation, emphasizing the importance of directional probabilistic excitation in learning Volterra models, and outline potential directions for future research in this area.
+\end{frame}        
+
+\begin{frame}{Extra slides for Q\&A}
+    Goal of the slide: Prepare additional slides that can be used to address potential questions during the Q\&A session, such as detailed proofs, additional empirical results, or comparisons with other methods.
+\end{frame}
+
 \end{document}

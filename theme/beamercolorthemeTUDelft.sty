@@ -1,0 +1,36 @@
+% --- 1. COLOR THEME (theme/beamercolorthemeTUDelft.sty) ---
+\ProvidesPackage{beamercolorthemeTUDelft}
+\RequirePackage{xcolor}
+
+% Define your university colors here
+% Define the TUD colors:
+\definecolor{TUcyan}{cmyk}{1, 0, 0, 0}
+\definecolor{TUwhite}{cmyk}{0, 0, 0, 0}
+\definecolor{TUblack}{cmyk}{0, 0, 0, 1}
+
+% Complementary TUD colors: https://www.tudelft.nl/huisstijl/bouwstenen/kleur
+\definecolor{TUdarkblue}{cmyk}{1, 0.80, 0.08, 0.70}
+\definecolor{TUturqois}{cmyk}{0.72, 0, 0.24, 0}
+\definecolor{TUlightblue}{cmyk}{0.98, 0.40, 0, 0}
+\definecolor{TUpurple}{cmyk}{0.65, 1, 0, 0.12}
+\definecolor{TUpink}{cmyk}{0, 0.70, 0, 0}
+\definecolor{TUraspberry}{cmyk}{0.05, 1, 0.48, 0.30}
+\definecolor{TUred}{cmyk}{0, 0.85, 0.75, 0}
+\definecolor{TUorange}{cmyk}{0, 0.70, 0.75, 0}
+\definecolor{TUyellow}{cmyk}{0, 0.31, 0.98, 0}
+\definecolor{TUlightgreen}{cmyk}{0.63, 0, 0.84, 0}
+\definecolor{TUdarkgreen}{cmyk}{1, 0, 0.68, 0.04}
+\definecolor{TUgrey}{cmyk}{0, 0, 0, 0.80}
+
+\setbeamercolor*{structure}{fg=TUcyan, bg=TUwhite}
+\setbeamercolor*{palette primary}{use=structure, fg=TUwhite, bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure, fg=TUwhite, bg=TUblack}
+\setbeamercolor*{title}{fg=TUwhite, bg=TUcyan}
+\setbeamercolor*{subtitle}{fg=TUwhite, bg=TUcyan}
+\setbeamercolor*{author}{fg=TUwhite, bg=TUcyan}
+\setbeamercolor*{frametitle}{fg=TUblack, bg=TUwhite}
+\setbeamercolor*{item}{fg=TUblack}
+
+\setbeamercolor{itemize item}{fg=TUcyan}
+\setbeamercolor{itemize subitem}{fg=TUcyan}
+\setbeamercolor{enumerate item}{fg=TUcyan}

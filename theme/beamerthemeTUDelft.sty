@@ -1,0 +1,87 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeTUDelft}
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc, positioning, svg.path}
+
+\RequirePackage[english]{babel}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{caption}
+
+
+% ==============================================================================
+\usecolortheme{TUDelft}
+\usefonttheme{TUDelft}
+
+\captionsetup{labelfont={color=TUcyan, bf}, textfont={color=TUblack}}
+
+% ==============================================================================
+% SET LOGOS (AS THEY ARE USED IN MULTIPLE THEMES)
+% ==============================================================================
+
+% Define placeholders. Replace 'example-image' with your actual filenames.
+\newcommand{\logoPath}{example-image}       % Your Logo File
+\newcommand{\titleBgImage}{example-image-a} % Title Slide Background
+\newcommand{\chapterBgImage}{example-image-b} % Chapter Background
+\newcommand{\contentImage}{example-image-c}   % Standard Content Image
+
+\newcommand{\TUDelftLogo}{%
+    \input{resources/tudelft-logo-tikz/TuDelft_logo_cmyk.tex}
+}
+\newcommand{\TUDelftLogoWhite}{%
+    \input{resources/tudelft-logo-tikz/TuDelft_logo_white_cmyk.tex}
+}
+\newcommand{\TUDelftLogoBlack}{%
+    \input{resources/tudelft-logo-tikz/TuDelft_logo_black_cmyk.tex}
+}
+
+
+% Define custom colorboxes
+% --- Custom Box Definitions ---
+
+% 1. A Simple Box (Inline styling)
+% No definition needed, used directly in the document.
+
+% 2. A Reusable "Theorem-like" Box
+\newtcolorbox{conceptbox}[1][]{
+  colback=TUdarkblue!5!TUwhite,      % Background color (5% blue, rest white)
+  colframe=TUdarkblue!75!TUblack,    % Frame color
+  fonttitle=\bfseries,       % Title font weight
+  title={Key Concept},       % Default title
+  rounded corners,           % Geometry
+  arc=4mm,                   % Curvature radius
+  #1                         % Allows overriding options locally
+}
+
+% 3. An "Alert" Box with a Fancy Skin (Shadows)
+\newtcolorbox{warningbox}[1][]{
+  enhanced,                  % Enable advanced skin features (shadows, overlays)
+  colback=TUred!5!TUwhite,
+  colframe=TUred!80!TUblack,
+  title={Warning},
+  fonttitle=\bfseries,
+  attach boxed title to top left={xshift=5mm, yshift=-2mm}, % Floating title
+  boxed title style={
+    colback=red!80!black,
+    rounded corners
+  },
+  drop fuzzy shadow,         % Adds a soft shadow
+  #1
+}
+
+% 4. Equation Box
+\newtcolorbox{mathhighlight}{
+  colback=TUyellow!10!TUwhite,
+  colframe=TUyellow!50!TUblack,
+  boxrule=0.5mm,
+  sharp corners,
+  left=2mm, right=2mm, top=2mm, bottom=2mm % Padding
+}
+
+
+\useinnertheme{TUDelft}
+\useoutertheme{TUDelft}
+
+% ==============================================================================
+% END THEME DEFINITIONS
+% ==============================================================================

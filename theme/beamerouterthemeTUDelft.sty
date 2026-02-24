@@ -1,0 +1,61 @@
+% --- 4. OUTER THEME (theme/beamerouterthemeTUDelft.sty) ---
+\ProvidesPackage{beamerouterthemeTUDelft}
+% Controls headers, footers, and slide geometry
+
+% Remove default nav symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Start the sectiontitle exactly at 1cm from the side
+\setbeamertemplate{frametitle}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=1cm,rightskip=1cm]{frametitle}
+        \usebeamerfont{frametitle}\insertframetitle
+    \end{beamercolorbox}
+}
+
+% --- Custom Background Templates via TikZ ---
+% We will add support for custom backgrounds using TikZ later.
+
+
+% 2. Standard Slide Header/Footer
+\setbeamertemplate{headline}{
+    %\begin{tikzpicture}[remember picture, overlay]
+    %    % Logo top left
+    %    \node[anchor=north west] at ($(current page.north west) + (0.5cm, -0.3cm)$) {
+    %        \resizebox{2.5cm}{!}{\TUDelftLogoBlack}
+    %    };
+    %\end{tikzpicture}
+    \vspace{0.5cm} % Push content down
+}
+
+\setbeamertemplate{footline}{
+    \vspace{1.5cm} % Push the content up.
+    \begin{tikzpicture}[remember picture, overlay]
+        % Page number and Date at bottom right, TU Delft logo bottom left
+        \node[anchor=base west, inner sep=0pt] (logo) at ($(current page.south west) + (1cm, 0.5cm)$) {
+            \resizebox{!}{1cm}{\TUDelftLogo}
+        };
+        % 2. Place the Text aligned to 'logo.base'
+        % The coordinate calculation ( A |- B ) takes the X from A and the Y from B.
+        \node[anchor=base east, inner sep=0pt] at ($(current page.south east) + (-0.5cm, 0.5cm)$) {
+            \textcolor{TUblack}{\scriptsize \insertshortdate \hspace{1em} \robotofont{\textbf{\insertframenumber}}}
+        };
+    \end{tikzpicture}
+}
+
+% 3. Section/Chapter Page Template
+\newcommand{\chapterpage}{
+    \begingroup
+    \setbeamertemplate{headline}{} % No logo on top
+    \setbeamertemplate{footline}{} % No footer
+    \setbeamercolor{background canvas}{bg=TUcyan} % Cyan background
+    \begin{frame}[plain]
+        \begin{tikzpicture}[remember picture, overlay]
+            \node[anchor=center, align=center, text width=0.8\paperwidth] at (current page.center) {
+                \color{TUwhite}\Huge\bfseries \insertsection
+            };
+        \end{tikzpicture}
+    \end{frame}
+    \endgroup
+}
+
+

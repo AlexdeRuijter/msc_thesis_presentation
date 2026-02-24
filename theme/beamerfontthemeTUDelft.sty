@@ -1,0 +1,51 @@
+\ProvidesPackage{theme/beamerfontthemeTUDelft}
+
+\mode<presentation>
+
+% 1. Load Required Packages
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+%\RequirePackage{xcharter-otf} % Loads Charter text and Math
+\RequirePackage[xcharter]{fontsetup}
+
+
+% 2. Main Text Font (Arial)
+% We set this as the default Sans font, which Beamer uses for body text.
+%\setsansfont{Arial}[
+%    Path = resources/ttf/Arial/,
+%    Extension = .ttf,
+%    UprightFont =*-Narrow,
+%    BoldFont = *-Narrow-Bold,
+%    ItalicFont = *-Narrow-Italic,
+%    BoldItalicFont = *-Narrow-Bold-Italic
+%]
+
+% 3. Math Font (Fira Math)
+% Matches the Sans-Serif look of Arial.
+%\setmathfont{Fira Math}
+
+% 4. Title Font Definitions (Roboto Slab)
+% Defined as a separate family so we can apply it selectively.
+\newfontfamily\robotofont{RobotoSlab}[
+    Path = resources/ttf/RobotoSlab/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = Roboto-Italic,
+    BoldItalicFont = Roboto-BoldItalic,
+]
+
+% Keep Arial for the headers to satisfy Brand Guidelines
+%\setsansfont{Arial}
+
+% 5. Apply Fonts to Beamer Elements
+% Titles
+\setbeamerfont{title}{family=\robotofont, size=\huge, series=\bfseries}
+\setbeamerfont{subtitle}{family=\robotofont, size=\large}
+\setbeamerfont{frametitle}{family=\robotofont, size=\Large, series=\bfseries}
+
+
+% Table of contents sections often look better matching the title font
+\setbeamerfont{section in toc}{family=\robotofont, series=\bfseries}
+
+\mode <all>

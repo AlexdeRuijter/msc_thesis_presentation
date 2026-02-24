@@ -1,6 +1,6 @@
 # Define variables for directories and main file
 export MAIN            :="main"
-export RELEASE_NAME    :="monograph"
+export RELEASE_NAME    :="thesis_presentation"
 export RELEASE_DIR     :="release"
 export AUX_DIR         :="aux" 
 export LOG_DIR         :=".log"

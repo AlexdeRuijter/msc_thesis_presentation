@@ -1,0 +1,174 @@
+\newcommand{\mxA}{\mx{A}} % matrix A
+\newcommand{\mxB}{\mx{B}} % matrix B
+\newcommand{\mxC}{\mx{C}} % matrix C
+\newcommand{\mxD}{\mx{D}} % matrix D
+\newcommand{\mxE}{\mx{E}} % matrix E
+\newcommand{\mxK}{\mx{K}} % matrix K
+\newcommand{\mxL}{\mx{L}} % matrix L
+\newcommand{\mxM}{\mx{M}} % matrix M
+\newcommand{\mxN}{\mx{N}} % matrix N
+\newcommand{\mxO}{\mx{O}} % matrix O
+\newcommand{\mxQ}{\mx{Q}} % matrix Q
+\newcommand{\mxP}{\mx{P}} % matrix P
+\newcommand{\mxR}{\mx{R}} % matrix R
+\newcommand{\mxS}{\mx{S}} % matrix S
+\newcommand{\mxT}{\mx{T}} % matrix T
+\newcommand{\mxW}{\mx{W}} % matrix W
+\newcommand{\mxX}{\mx{X}} % matrix X
+\newcommand{\mxY}{\mx{Y}} % matrix Y
+\newcommand{\mxZ}{\mx{Z}} % matrix Z
+\newcommand{\mxG}{\mx{G}} % matrix G
+\newcommand{\mxH}{\mx{H}} % matrix H
+\newcommand{\mxU}{\mx{U}} % matrix U
+\newcommand{\mxV}{\mx{V}} % matrix V
+\newcommand{\mxF}{\mx{F}} % matrix F
+\newcommand{\mxSigma}{\mx{\Sigma}} % matrix Sigma
+\newcommand{\mxOmega}{\mx{\Omega}} % matrix Omega
+
+\newcommand{\vca}{\vc{a}} % vector a
+\newcommand{\vcb}{\vc{b}} % vector b
+\newcommand{\vce}{\vc{e}} % vector e
+\newcommand{\vcs}{\vc{s}} % vector s
+\newcommand{\vcu}{\vc{u}} % vector u
+\newcommand{\vcv}{\vc{v}} % vector v
+\newcommand{\vcw}{\vc{w}} % vector w
+\newcommand{\vcx}{\vc{x}} % vector x
+\newcommand{\vcy}{\vc{y}} % vector y
+\newcommand{\vcz}{\vc{z}} % vector z
+\newcommand{\vctheta}{\vc{\theta}} % vector \theta
+\newcommand{\vcmu}{\vc{\mu}} % vector \mu
+\newcommand{\vcp}{\vc{p}} % vector p
+\newcommand{\vcq}{\vc{q}} % vector q
+
+\newcommand{\Nu}{n_\vc{u}} % size of vector u
+\newcommand{\Nv}{n_\vc{u}} % size of vector v
+\newcommand{\Nw}{n_\vc{w}} % size of vector w
+\newcommand{\Nx}{n_\vc{x}} % size of vector x
+\newcommand{\Ny}{n_\vc{y}} % size of vector y
+
+
+\newcommand{\hatA}{\hat{\mx{A}}} % hat of (matrix) A
+\newcommand{\hatP}{\hat{\mx{P}}} % hat of (matrix) P
+\newcommand{\hatQ}{\hat{\mx{Q}}} % hat of (matrix) Q
+\newcommand{\hatX}{\hat{\mx{X}}} % hat of (matrix) X
+
+\newcommand{\uGamma}{\underline{\Gamma}} % underline (matrix) Gamma
+\newcommand{\bGamma}{\overline{\Gamma}} % overline (matrix) Gamma
+
+%\newcommand{\nD}{{n_{\Dcal}}} % size of data set
+\newcommand{\nD}{{n_{\smtiny{$\Dcal$}}}} % size of data set
+\newcommand{\nsD}{{n_{\stiny{$\Dcal$}}}} % size of data set
+\newcommand{\nmD}{{n_{\mtiny{$\Dcal$}}}} % size of data set
+\newcommand{\nsmD}{{n_{\smtiny{$\Dcal$}}}} % size of data set
+% \Dcal --> data set
+
+\newcommand{\nbatch}{n_{\text{batch}}}
+
+\newcommand{\mux}{\mu_{\vcx_0}}     % vector mu_x0
+\newcommand{\mxSx}{\mx{S}_{\vcx_0}}   % vector S_x0
+\newcommand{\mxSw}{\mx{S}_{\vcw}}     % vector S_w
+\newcommand{\mxSv}{\mx{S}_{\vcv}}     % vector S_v
+
+
+\newcommand{\thetaML}{\theta^{\text{\mtiny{$\mathrm{(ML)}$}}}}     % thetaML
+\newcommand{\vcthetaML}{\theta^{\text{\mtiny{$\mathrm{(ML)}$}}}}     % thetaML
+
+\newcommand{\Sbfxtheta}{\mxS^{{(\mathbf{x})}}\!(\theta)}
+\newcommand{\Sbfytheta}{\mxS^{{(\mathbf{y})}}\!(\theta)}
+\newcommand{\mubfxtheta}{\mu^{{(\mathbf{x})}}\!(\theta)}
+\newcommand{\mubfythetax}{\mu^{{(\mathbf{y})}}\!(\theta, \mathbf{x})}
+\newcommand{\Xitheta}{\Xi(\theta)}
+\newcommand{\Dtheta}{\mathbf{D}(\theta)}
+\newcommand{\Sqtheta}{\mxS_\vcq(\theta)}
+\newcommand{\qtheta}{\vcq(\theta)}
+
+
+\newcommand{\extendedR}{\overline{\Rbb}}
+
+\newcommand\indep{\protect\mathpalette{\protect\indeP}{\perp}}
+\def\indeP#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\define}{\coloneqq}      % Definition: colon equality 
+% \newcommand{\define}{\triangleq}      % Definition: triangle equality
+\newcommand{\trans}[1]{{#1}^{\tr}}   % Transpose
+
+
+
+% Style definitions for the different amsthm environments
+\crefformat{equation}{#2(#1)#3}
+\Crefformat{equation}{#2(#1)#3}
+\crefrangeformat{equation}{#3(#1)#4-#5(#2)#6}
+\Crefrangeformat{equation}{#3(#1)#4-#5(#2)#6}
+
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}[section]
+\crefformat{definition}{#2definition~#1#3}
+\Crefformat{definition}{#2Definition~#1#3}
+\crefrangeformat{definition}{#3definition~#1#4-#5#2#6}
+\Crefrangeformat{definition}{#3Definition~#1#4-#5#2#6}
+
+% \newtheorem{proposition}{Proposition}
+\crefformat{proposition}{#2Proposition~#1#3}
+\Crefformat{proposition}{#2Proposition~#1#3}
+\crefrangeformat{proposition}{#3Proposition~#1#4-#5#2#6}
+\Crefrangeformat{proposition}{#3Proposition~#1#4-#5#2#6}
+
+% \newtheorem{theorem}{Theorem}[section]
+\crefformat{theorem}{#2Theorem~#1#3}
+\Crefformat{theorem}{#2Theorem~#1#3}
+\crefrangeformat{theorem}{#3Theorem~#1#4-#5#2#6}
+\Crefrangeformat{theorem}{#3Theorem~#1#4-#5#2#6}
+
+% \newtheorem{lemma}{Lemma}
+\crefformat{lemma}{#2Lemma~#1#3}
+\Crefformat{lemma}{#2Lemma~#1#3}
+\crefrangeformat{lemma}{#3Lemma~#1#4-#5#2#6}
+\Crefrangeformat{lemma}{#3Lemma~#1#4-#5#2#6}
+
+% \theoremstyle{remark}
+% \newtheorem*{remark}{Remark}
+\crefformat{remark}{#2Remark~#1#3}
+\Crefformat{remark}{#2Remark~#1#3}
+\crefrangeformat{remark}{#3Remark~#1#4-#5#2#6}
+\Crefrangeformat{remark}{#3Remark~#1#4-#5#2#6}
+
+% \newtheorem{assumption}{Assumption}
+\crefformat{assumption}{#2Assumption~#1#3}
+\Crefformat{assumption}{#2Assumption~#1#3}
+\crefrangeformat{assumption}{#3Assumptions~#1#4-#5#2#6}
+\Crefrangeformat{assumption}{#3Assumptions~#1#4-#5#2#6}
+
+% Automatically resizing commmands
+\let\oldexp\exp
+\renewcommand{\exp}[1]{\operatorname{exp}\left( #1 \right)}
+
+\newcommand{\Prob}[1]{\mathds{P}\!\!\,\left[#1\right]}
+\newcommand{\CProb}[2]{\mathds{P}\!\!\,\left[#1\,\middle|\,#2\right]}
+\newcommand{\Exp}[1]{\mathds{E}\!\!\,\left[#1\right]}
+\newcommand{\CExp}[2]{\mathds{E}\!\!\,\left[#1\,\middle|\,#2\right]}
+\newcommand{\lmax}[1]{\lambda_{\max{}}\!\!\left(#1\right)}
+\newcommand{\lmin}[1]{\lambda_{\min{}}\!\!\left(#1\right)}
+
+% Option to manually resize
+\newcommand{\expM}[2]{\operatorname{exp}#2( #1 #2)}
+\newcommand{\ProbM}[2]{\mathds{P}\!\,#2[#1 #2]}
+\newcommand{\CProbM}[3]{\mathds{P}\!\,#3[#1\,#3|\,#2 #3]}
+\newcommand{\ExpM}[2]{\mathds{E}\!\,#2[#1 #2]}
+\newcommand{\CExpM}[3]{\mathds{E}\!\,#3[#1\,#3|\,#2 #3]}
+\newcommand{\lmaxM}[2]{\lambda_{\max{}}\!#2(#1 #2)}
+\newcommand{\lminM}[2]{\lambda_{\min{}}\!#2(#1 #2)}
+
+\newcommand{\Cov}[2]{\operatorname{Cov}\!\left(#1, #2\right)}
+\newcommand{\CovM}[3]{\operatorname{Cov}\!#3(#1, #2 #3)}
+\newcommand{\Var}[1]{\operatorname{Var}\left(#1\right)}
+\newcommand{\VarM}[2]{\operatorname{Var}#2(#1 #2)}
+
+% scalars -> normal letters small italics
+% vectors -> small roman
+% vector of vectors -> small bold roman
+% matrics/operators -> large roman
+% sets: \mathcal
+% sigma-algebras: \mathscr
+% probability of a set: \Prob{ ... }
+
+

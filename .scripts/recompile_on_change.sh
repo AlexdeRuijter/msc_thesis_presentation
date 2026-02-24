@@ -9,16 +9,22 @@ if ! command -v inotifywait &> /dev/null; then
     exit 1
 fi
 
-while true; do
-    # Watch for changes in the current directory, excluding certain file types
-    inotifywait -e modify,create,delete -r . --exclude '(\.log|\.aux|\.pdf|\.monitor|\.justfile)'
-    
+echo "Watching for changes in the current directory. Press Ctrl+C to stop."
+
+# Watch for changes in the current directory, excluding certain file types
+inotifywait -m -e modify,create,delete -r . --exclude '(\.log|\.aux|\.pdf|\.monitor|\.justfile|\.git|\.scripts|\.*.sw?|\.gitignore)' \
+| while read -r directory events filename; do
     # Clear the terminal
     clear
+
+    # Print a message indicating that a change was detected
+    echo "Change detected at $(date). Recompiling and continuing to watch for changes..."
 
     # Compile the LaTeX document
     bash .scripts/compile.sh $1 $2 $3 $4
 
-    # Make sure that we don't do too many compilations in a short time
-    sleep 1
+    # Empty the pipe to prevent multiple compilations if multiple changes are detected in quick succession
+    while read -t 0.1 -u 0 discard; do :; done
+    echo "Watching for changes in the current directory. Press Ctrl+C to stop."
+
 done
