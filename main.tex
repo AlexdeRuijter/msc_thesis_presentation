@@ -6,11 +6,13 @@
 \makeatother
 % --------------------------------------------------
 
+\newcommand{\coloneqq}{: \mathrel {\mkern -1.2mu}=}
 \usetheme{TUDelft}
 % ==============================================================================
 
 \input{STYLE/mystyle}
 \input{STYLE/mynotations}
+
 
 % --- Speaker Notes Setup ---
 % To view notes, you would typically use:
@@ -18,7 +20,7 @@
 % However, for this preview, we keep slides standard.
 
 % --- Metadata ---
-\title[Learning Volterra Models]{Learning Volterra Models:\\ \hspace{1em} Just Be \emph{Directionally} Excited!}
+\title[Learning Volterra Models]{Learning Volterra Models}
 \subtitle{Non-Asymptotic Bounds via Directional Probabilistic Excitation}
 \institute[Delft]{Delft University of Technology}
 \date{\today}
@@ -37,27 +39,40 @@
 \end{frame}
 
 \begin{frame}{What are we learning}
-    Goal of this part: 
-    \begin{center}
-       Understand intuitively fading and non-fading memory systems\\
-        Show ball vs clipping lid behaviour, ball forgets, lid gets stuck hence remembers.
-    \end{center}
-    Intuition of example 1 (peak detector)
+   
+    Duck vs. Lid (fading and non fading)
+
+\end{frame}
+
+\begin{frame}{What are we learning}
+    \begin{theorem}
+    [Universal Approximation of Fading Memory Operators by Volterra Series, \texorpdfstring{\cite[Theorem 4]{BoydChua1985}}{Boyd and Chua \textit{(1975)} Theorem 4}]
+    \label{thm:volterra_universal_approximation}
+    Let $\epsilon >0$ and 
+    \begin{equation}
+        \Kcal \coloneqq \{ \vc{u} \in \ell^\infty : \norm{\vc{u}}_{\infty} \leq M \}.
+    \end{equation}
+    Suppose that $\mx{N}$ is \emph{any} causal time-invariant operator $: \ell^\infty \to \ell^\infty$ with fading memory on $\Kcal$.
+    Then, there exists a polynomial $p: \Rbb^m \to \Rbb$ such that for all $\vc{u} \in \Kcal$,
+    \begin{equation}
+        \norm{\mx{N}\vc{u} - \mx{P}\vc{u}}_\infty < \epsilon,
+    \end{equation}
+    and $\mx{P}u(k) = p(u(k), u(k-1), \dots, u(k-m+1))$.
+\end{theorem}
 \end{frame}
 
 \begin{frame}{Volterra Series: A Universal Representation}
-       Goal of the frame; introduce the volterra series
-
-       Make the LIP structure explicit, show how the kernels are the parameters we want to learn, and how the input-output relationship is a linear function of these parameters.
-
-       Technical details: show the series expansion, explain the role of the kernels, and emphasize the linear-in-parameters nature of the model, which is crucial for our results.
+    \begin{definition}[Discrete-Time Volterra Model]
+    \label{def:volterra}
+    Let $u_t \in \Rbb$ be the input and $y_t \in \Rbb$ be the output at time $t$.
+    A Volterra model of degree $P$ with memory $M$ is defined as the expansion
+    \begin{equation}
+        y_t = h_0 + \sum_{p=1}^P \sum_{\tau_1=0}^{M-1} \dots \sum_{\tau_p=\tau_{p-1}}^{M-1} h_p(\tau_1, \dots, \tau_p) \prod_{j=1}^p u_{t-\tau_j} + \epsilon_t
+    \end{equation}
+    where $h_p$ are the Volterra kernels and $\epsilon_t$ is an additive noise process.
+\end{definition}
 \end{frame}
 
-\begin{frame}{The curse of dimensionality}
-    Goal of the frame: show how the number of parameters grows combinatorially with the order and memory length, making learning difficult.
-
-    Technical details: Combinatorial explosion of parameters.
-\end{frame}
 
 { 
 
@@ -166,8 +181,7 @@
         \draw[dashed, TUred, thick] (4.5, 4.8) -- (0, 3.45); % Top-left of zoom box to Bottom-left
         \draw[dashed, TUred, thick] (6.5, 4.8) -- (\totalWidth, 2.8);  % Top-right of zoom box to Bottom-right
 
-    \end{tikzpicture}
-    \caption{Visualizing the disconnect between asymptotic excitation and finite identification. The top plot shows a sparse signal over a long horizon. The bottom plot zooms into a finite window ($N=20$) where only a single data point ($t=16$) provides excitation, while the rest of the window contains little to no information.}
+    \end{tikzpicture} 
 \end{figure}    
     \vspace{3em}
 %    \begin{itemize}
@@ -191,20 +205,78 @@
 }
 
 \begin{frame}{Main Result: Non-Asymptotic Bounds for Volterra Learning}
-    Goal of the slide: State the main theorem in an intuitive way, emphasizing the role of directional probabilistic excitation and how it leads to finite-sample guarantees for learning Volterra models.
-    No exact constants, just the implications
-
-    Technical details: State the theorem informally, sub-Gaussian assumption, expain the key takeaways such as the $N \cong D$ scaling
+\begin{theorem}[Sample Complexity of Volterra Models]
+\label{thm:volterra_sample_complexity}
+Consider a Volterra model of memory $M$ and degree $P$ with dimension $D = \binom{M+P}{P}$. 
+There exists an absolute constant $C>0$ such that if
+\begin{equation}
+N \geq \frac{C}{\beta}\max\left\{\; D\log\frac{2}{\beta},\;\log\frac{2}{\delta}\;\right\},
+\end{equation}
+then with probability at least $1 -\delta$,
+\begin{equation}
+\|\hat{\theta}_N - \theta^\star\|_2 \leq \frac{K}{\sqrt{\alpha \beta N}} \left(\sqrt{D} + \sqrt{\log \frac{2}{\delta}}\right).
+\end{equation}
+\end{theorem}
 \end{frame}
 
 \begin{frame}{Implications}
     Goal of the slide: Discuss the practical implications of the main result, $N \cong D$ scaling, influence of beta.
 \end{frame}
 
-\begin{frame}{Validation 1: Excitation matters}
-    Goal of the slide: Show empirical results that demonstrate the importance of excitation in learning Volterra models, comparing scenarios with different excitation levels.
+
+\begin{frame}[plain]
+    \begin{figure}[h]
+\centering
+
+\tikzexternalenable
+\tikzsetnextfilename{ConvergenceProbabilityExperimentOne}
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.95\textwidth,
+    height=0.45\textwidth,
+    xmin=1, xmax=10,
+    xmode=log,
+    ymin=-0.05, ymax=1.05,
+    xlabel={Sample Complexity $N/D$},
+    ylabel={Probability $\delta$},
+    grid=both,
+    grid style={TUgrey, dotted},
+    legend style={at={(0.5,-0.20)}, anchor=north, font=\footnotesize, legend columns=2, draw=none, fill=none, transpose legend,/tikz/every even column/.append style={column sep=0.3cm}},
+    legend cell align={left},
+    title={\titlefont{Convergence Probability}}
+]
+
+\pgfplotstableread[col sep=comma]{DATA/experiment1.csv}\mydata
+\addplot [TUpurple, solid, very thick] table [x=Ratio, y=Gaussian_Prob_Lt_100.00, col sep=comma] {\mydata};
+\addlegendentry{I.I.D. $< 100.00$}
+\addplot [TUpurple, dashed, very thick] table [x=Ratio, y=AR1_Prob_Lt_100.00, col sep=comma] {\mydata};
+\addlegendentry{AR(1) $< 100.00$}
+
+\addplot [TUraspberry, solid, very thick] table [x=Ratio, y=Gaussian_Prob_Lt_31.62, col sep=comma] {\mydata};
+\addlegendentry{I.I.D. $< 31.62$}
+\addplot [TUraspberry, dashed, very thick] table [x=Ratio, y=AR1_Prob_Lt_31.62, col sep=comma] {\mydata};
+\addlegendentry{AR(1) $< 31.62$}
+
+\addplot [TUdarkgreen, solid, very thick] table [x=Ratio, y=Gaussian_Prob_Lt_10.00, col sep=comma] {\mydata};
+\addlegendentry{I.I.D. $< 10.00$}
+\addplot [TUdarkgreen, dashed, very thick] table [x=Ratio, y=AR1_Prob_Lt_10.00, col sep=comma] {\mydata};
+\addlegendentry{AR(1) $< 10.00$}
+
+\addplot [TUorange, solid, very thick] table [x=Ratio, y=Gaussian_Prob_Lt_3.16, col sep=comma] {\mydata};
+\addlegendentry{I.I.D. $< 3.16$}
+\addplot [TUorange, dashed, very thick] table [x=Ratio, y=AR1_Prob_Lt_3.16, col sep=comma] {\mydata};
+\addlegendentry{AR(1) $< 3.16$}
+
+\addplot [TUdarkblue, solid, very thick] table [x=Ratio, y=Gaussian_Prob_Lt_1.00, col sep=comma] {\mydata};
+\addlegendentry{I.I.D. $< 1.00$}
+\addplot [TUdarkblue, dashed, very thick] table [x=Ratio, y=AR1_Prob_Lt_1.00, col sep=comma] {\mydata};
+\addlegendentry{AR(1) $< 1.00$}
 
 
+\end{axis}
+\end{tikzpicture}
+\tikzexternaldisable
+\end{figure}
 \end{frame}
 
 \begin{frame}{Validation 2: Noise and Dimension}
@@ -224,5 +296,6 @@
 \begin{frame}{Extra slides for Q\&A}
     Goal of the slide: Prepare additional slides that can be used to address potential questions during the Q\&A session, such as detailed proofs, additional empirical results, or comparisons with other methods.
 \end{frame}
-
+\bibliographystyle{apalike} % We choose the "plain" reference style
+\bibliography{references}
 \end{document}

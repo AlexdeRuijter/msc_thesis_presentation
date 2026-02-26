@@ -29,6 +29,7 @@
 
 \setbeamertemplate{footline}{
     \vspace{1.5cm} % Push the content up.
+%    \tikzexternalenable
     \begin{tikzpicture}[remember picture, overlay]
         % Page number and Date at bottom right, TU Delft logo bottom left
         \node[anchor=base west, inner sep=0pt] (logo) at ($(current page.south west) + (1cm, 0.5cm)$) {
@@ -40,6 +41,7 @@
             \textcolor{TUblack}{\scriptsize \insertshortdate \hspace{1em} \robotofont{\textbf{\insertframenumber}}}
         };
     \end{tikzpicture}
+%    \tikzexternaldisable
 }
 
 % 3. Section/Chapter Page Template

@@ -91,7 +91,12 @@
 \usepackage{tikz}
 \usetikzlibrary{external}
 \tikzexternalize[prefix=FIGURES/]
-\tikzset{external/system call={pdflatex -shell-escape -halt-on-error -interaction=batchmode -output-directory="aux/" -jobname "\image" "\texsource"}}
+\tikzset{external/system call={
+    mkdir -p "FIGURES" "aux/FIGURES" && 
+    lualatex -shell-escape -halt-on-error -interaction=batchmode -output-directory="aux/" -jobname "\image" "\texsource" &&
+    cp "aux/\image.pdf" "FIGURES/" &&
+    cp "aux/\image.dpth" "FIGURES/" 2>/dev/null || true
+}}
 
 % Force TikZ to make externalized figures only when we require it:
 \tikzexternaldisable

@@ -12,13 +12,13 @@ fi
 echo "Watching for changes in the current directory. Press Ctrl+C to stop."
 
 # Watch for changes in the current directory, excluding certain file types
-inotifywait -m -e modify,create,delete -r . --exclude '(\.log|\.aux|\.pdf|\.monitor|\.justfile|\.git|\.scripts|\.*.sw?|\.gitignore)' \
+inotifywait -m -e modify,create,delete -r . --exclude '(\.log|\.aux|\.pdf|\.monitor|\.justfile|\.git|\.scripts|.*\.sw[a-z]|\.gitignore|aux/)' \
 | while read -r directory events filename; do
     # Clear the terminal
     clear
 
     # Print a message indicating that a change was detected
-    echo "Change detected at $(date). Recompiling and continuing to watch for changes..."
+    echo "Change detected at $(date) in $directory$filename. Recompiling and continuing to watch for changes..."
 
     # Compile the LaTeX document
     bash .scripts/compile.sh $1 $2 $3 $4
